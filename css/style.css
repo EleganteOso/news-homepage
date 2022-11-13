@@ -2,7 +2,7 @@
 
 root{
     --soft-orange: hsl(35, 77%, 62%);
-    -softred: hsl(5, 85%, 63%);
+    --softred: hsl(5, 85%, 63%);
     --white-off: hsl(36, 100%, 99%);
     --grayish-blue: hsl(233, 8%, 79%);
    --dark-grayish-blue: hsl(236, 13%, 42%);
@@ -12,11 +12,49 @@ root{
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body{
     font-size: 15px;
+    background-color: val(--white-off);
 }
+
+.navigation{
+    align-items: center;  
+    max-width: 90%;
+    width: 100%;
+    height: 90px;
+    padding: 1rem;
+    justify-content: space-around;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; 
+}
+
+ul{
+    display: flex;
+}
+
+li, a{
+    outline: none;
+    text-decoration: none;
+    padding: 1px 4px 0;
+    list-style: none;
+    color: hsl(236, 13%, 42%); 
+    cursor: pointer;
+}
+
+a:hover{
+    color: hsl(5, 85%, 63%);
+}
+
+
+.open-navigation,
+.close-navigation {
+  display: none;
+}
+
 
 .attribution{ 
     font-size: 11px; text-align: center; 
@@ -24,4 +62,56 @@ body{
 
 .attribution a{ 
     color: hsl(228, 45%, 44%);
+ }
+
+ @media (max-width: 425px) {
+
+.navigation {
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    align-items: center;
+    background-color: hsl(240, 100%, 5%);
+    height: 100%;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+   
+.open-navigation,
+.close-navigation {
+    display: block;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: hsl(35, 77%, 62%);
+}
+
+.close-navigation {
+    align-self: flex-end;
+    padding: 20px 15px;
+}
+
+.open-navigation:focus:not(:focus-visible),
+.close-navigation:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.navigation_opened {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+.navigation a::after {
+    content: none;
+  }
+
+  .navigation a:hover,
+  .navigation a.selected {
+    color:hsl(228, 45%, 44%);
+  }
+
  }
